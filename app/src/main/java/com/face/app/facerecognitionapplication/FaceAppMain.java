@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -25,7 +26,6 @@ public class FaceAppMain extends AppCompatActivity {
     DrawerLayout mainDrawerLayout;
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
-    private TextView mTextMessage;// 抽屉菜单对象
     private ActionBarDrawerToggle drawerbar;
 
 
@@ -36,13 +36,10 @@ public class FaceAppMain extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-//                    mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.navigation_dashboard:
-//                    mTextMessage.setText(R.string.title_dashboard);
                     return true;
                 case R.id.navigation_notifications:
-//                    mTextMessage.setText(R.string.title_notifications);
                     return true;
             }
             return false;
@@ -56,13 +53,22 @@ public class FaceAppMain extends AppCompatActivity {
         setContentView(R.layout.activity_face_app_main);
         ButterKnife.inject(this);
 
-//        mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         initLayout();
         initEvent();
         setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openLeftLayout();
+            }
+        });
     }
 
 
@@ -93,7 +99,7 @@ public class FaceAppMain extends AppCompatActivity {
     }
 
     //左边菜单开关事件
-    public void openLeftLayout(View view) {
+    public void openLeftLayout() {
         if (mainDrawerLayout.isDrawerOpen(mainLeftDrawerLayout)) {
             mainDrawerLayout.closeDrawer(mainLeftDrawerLayout);
         } else {
@@ -101,19 +107,5 @@ public class FaceAppMain extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.search, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                //TODO search
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
