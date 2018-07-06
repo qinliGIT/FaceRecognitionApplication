@@ -9,7 +9,7 @@ import static java.lang.Math.pow;
 /**
  * Name: StereoPagerTransformer
  * Author: Leo
- * Comment: //TODO
+ * Comment: //TODO 方盒切换效果
  * Date: 2018/7/5 10:25
  */
 
@@ -36,7 +36,7 @@ public class StereoPagerTransformer implements ViewPager.PageTransformer {
     public void transformPage(View view, float position) {
         view.setPivotY(view.getHeight() / 2);
         if (position < -1) { // [-Infinity,-1)
-// This page is way off-screen to the left.
+            // This page is way off-screen to the left.
             view.setPivotX(0);
             view.setRotationY(90);
         } else if (position <= 0) { // [-1,0]
@@ -46,7 +46,7 @@ public class StereoPagerTransformer implements ViewPager.PageTransformer {
             view.setPivotX(0);
             view.setRotationY(sInterpolator.getInterpolation(position));
         } else { // (1,+Infinity]
-// This page is way off-screen to the right.
+            // This page is way off-screen to the right.
             view.setPivotX(0);
             view.setRotationY(90);
         }
