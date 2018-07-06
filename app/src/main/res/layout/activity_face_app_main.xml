@@ -17,13 +17,18 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorAccent"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:title="@string/app_name"
-            app:titleTextColor="@android:color/white">
+            app:titleTextColor="@android:color/white"/>
 
-        </android.support.v7.widget.Toolbar>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/page_main_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/navigation"
+            android:layout_below="@+id/toolbar"/>
 
         <android.support.design.widget.BottomNavigationView
             android:id="@+id/navigation"
@@ -35,20 +40,14 @@
     </RelativeLayout>
 
     <!-- 左侧滑动栏 -->
-    <RelativeLayout
-        android:id="@+id/main_left_drawer_layout"
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/colorTranslate"
-        android:paddingTop="50dp">
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="左边菜单测试" />
-
-    </RelativeLayout>
 </android.support.v4.widget.DrawerLayout>
 
