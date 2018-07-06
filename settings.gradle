@@ -1,1 +1,1 @@
-include ':app', ':mycompile'
+include ':app', ':mycompile', ':mypermissionlibrary'

@@ -24,12 +24,12 @@ public class BaseActivity extends AppCompatActivity {
     private void initStatesBar() {
         //设置noTitle
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-//设置android 4.4以上即api19以上的状态栏为半透明
+        //设置android 4.4以上即api19以上的状态栏为半透明
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
             localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
         }
-//将我们自己的toolbar替换掉actionbar,最好让activity的theme是noActionbar的
+        //将我们自己的toolbar替换掉actionbar,最好让activity的theme是noActionbar的
     }
 
 
