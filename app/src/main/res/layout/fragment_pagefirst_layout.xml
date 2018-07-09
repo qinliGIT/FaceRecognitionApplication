@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@color/colorWhite"
     android:orientation="vertical">
 
-    <TextView
+    <Button
+        android:id="@+id/face_age_get_pic"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="1" />
-</LinearLayout>
+        android:layout_height="56dp"
+        android:textSize="18sp"
+        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:text="上传图片" />
+
+    <!--<ImageButton-->
+        <!--android:textDirection=""-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:src="@drawable/face_take_camera"-->
+        <!--android:layout_height="match_parent" />-->
+</RelativeLayout>

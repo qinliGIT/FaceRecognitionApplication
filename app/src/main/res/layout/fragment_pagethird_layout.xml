@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/colorPrimary"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="3" />
+        android:layout_height="48dp"
+        android:background="@color/colorWhite"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:text="@string/fragment_face_more_title"
+        android:textSize="16sp" />
 
-
+    <GridView
+        android:id="@+id/faceMoreGrid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGrey"
+        android:horizontalSpacing="1px"
+        android:numColumns="4"
+        android:verticalSpacing="1px" />
 </LinearLayout>

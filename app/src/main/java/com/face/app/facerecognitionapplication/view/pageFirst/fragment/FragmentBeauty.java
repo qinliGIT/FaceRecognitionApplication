@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.face.app.facerecognitionapplication.R;
+import com.face.app.facerecognitionapplication.view.base.BaseFragment;
 
 import butterknife.ButterKnife;
 
@@ -17,7 +18,7 @@ import butterknife.ButterKnife;
 * Comment: //TODO
 * Date: 2018/7/5 10:30
 */
-public class FragmentBeauty extends Fragment{
+public class FragmentBeauty extends BaseFragment {
     public FragmentBeauty() {
     }
 
@@ -30,7 +31,6 @@ public class FragmentBeauty extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pagesecond_layout, null);
-        ButterKnife.inject(view);
         return view;
     }
 
@@ -38,5 +38,10 @@ public class FragmentBeauty extends Fragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

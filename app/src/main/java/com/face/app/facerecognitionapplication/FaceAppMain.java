@@ -27,20 +27,20 @@ import com.face.app.facerecognitionapplication.view.pageFirst.fragment.FragmentM
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class FaceAppMain extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener,
         BottomNavigationView.OnNavigationItemSelectedListener {
-    @InjectView(R.id.main_drawer_layout)
+    @Bind(R.id.main_drawer_layout)
     DrawerLayout mainDrawerLayout;
-    @InjectView(R.id.toolbar)
+    @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.navigation)
+    @Bind(R.id.navigation)
     BottomNavigationView navigation;
-    @InjectView(R.id.page_main_viewpager)
+    @Bind(R.id.page_main_viewpager)
     ViewPager pageMainViewpager;
-    @InjectView(R.id.nav_view)
+    @Bind(R.id.nav_view)
     NavigationView navView;
 
     private MenuItem menuItem;
@@ -49,10 +49,21 @@ public class FaceAppMain extends BaseActivity implements NavigationView.OnNaviga
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_face_app_main);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
+        init();
+    }
+
+    @Override
+    public void init() {
         initLayout();
         initToolBar();
         initViewPager();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 
     private void initViewPager() {
@@ -76,6 +87,7 @@ public class FaceAppMain extends BaseActivity implements NavigationView.OnNaviga
                 }
                 menuItem = navigation.getMenu().getItem(position);
                 menuItem.setChecked(true);
+                initStatesColor(position);
             }
 
             @Override
@@ -108,6 +120,24 @@ public class FaceAppMain extends BaseActivity implements NavigationView.OnNaviga
         mainDrawerLayout.addDrawerListener(toggle);
     }
 
+    /**
+     * 初始化toolbar颜色
+     * @param position
+     */
+    private void initStatesColor(int position) {
+        switch (position) {
+            case 0:
+                toolbar.setBackgroundResource(R.color.colorMainGreen);
+                break;
+            case 1:
+                toolbar.setBackgroundResource(R.color.colorMainBlue);
+                break;
+            case 2:
+                toolbar.setBackgroundResource(R.color.colorMainOriange);
+                break;
+        }
+    }
+
     @Override
     public void onBackPressed() {
         if (mainDrawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -122,15 +152,15 @@ public class FaceAppMain extends BaseActivity implements NavigationView.OnNaviga
         int id = item.getItemId();
         switch (id) {
             case R.id.navigation_home:
-                toolbar.setBackgroundResource(R.color.colorAccent);
+                initStatesColor(0);
                 pageMainViewpager.setCurrentItem(0);
                 break;
             case R.id.navigation_dashboard:
-                toolbar.setBackgroundResource(R.color.colorPrimaryDark);
+                initStatesColor(1);
                 pageMainViewpager.setCurrentItem(1);
                 break;
             case R.id.navigation_notifications:
-                toolbar.setBackgroundResource(R.color.colorPrimary);
+                initStatesColor(2);
                 pageMainViewpager.setCurrentItem(2);
                 break;
             case R.id.nav_camera:

@@ -3,21 +3,20 @@ package com.face.app.facerecognitionapplication.view.pageFirst.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.face.app.facerecognitionapplication.R;
 import com.face.app.facerecognitionapplication.service.p.FaceResultDataPresenter;
 import com.face.app.facerecognitionapplication.service.v.FaceResultDataView;
-import com.face.app.mypermissionlibrary.PermissionCallback;
-import com.face.app.mypermissionlibrary.PermissionU;
-
-import butterknife.ButterKnife;
-
-import static android.content.ContentValues.TAG;
+import com.face.app.facerecognitionapplication.view.base.BaseFragment;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
 
 /**
  * Name: FragmentAge
@@ -25,7 +24,7 @@ import static android.content.ContentValues.TAG;
  * Comment: //TODO
  * Date: 2018/7/5 10:30
  */
-public class FragmentAge extends Fragment {
+public class FragmentAge extends BaseFragment {
     private FaceResultDataPresenter presenter;
 
     public FragmentAge() {
@@ -40,14 +39,21 @@ public class FragmentAge extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_pagefirst_layout, null);
-        ButterKnife.inject(view);
+        findId(view);
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        init();
+    }
 
+    private void findId(View view) {
+
+    }
+
+    private void init() {
         presenter = new FaceResultDataPresenter(getActivity());
         presenter.onCreate();
         presenter.attachView(mDataView);
@@ -63,7 +69,7 @@ public class FragmentAge extends Fragment {
 //
 //                    @Override
 //                    public void onFinish() {
-//                        showToast("所有权限申请完成");
+                        showToast("所有权限申请完成");
 //                    }
 //
 //                    @Override
@@ -78,9 +84,6 @@ public class FragmentAge extends Fragment {
 //                });
     }
 
-    private void showToast(String s) {
-        Toast.makeText(getActivity(), s, Toast.LENGTH_SHORT).show();
-    }
 
     private FaceResultDataView mDataView = new FaceResultDataView() {
         @Override

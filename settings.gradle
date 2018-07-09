@@ -1,1 +1,1 @@
-include ':app', ':mycompile', ':mypermissionlibrary'
+include ':app', ':mycompile', ':mypermissionlibrary', ':myselector&shape', ':DrawerLibrary'
